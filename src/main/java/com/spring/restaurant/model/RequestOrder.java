@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -47,6 +46,7 @@ public class RequestOrder extends CategoryOrder {
     @ManyToOne
     @JoinColumn(name = "userId", referencedColumnName = "id")
     private Utilisateur utilisateur;
+
 
    /* @OneToMany(mappedBy = "requestOrder", fetch = FetchType.LAZY)
     @Valid

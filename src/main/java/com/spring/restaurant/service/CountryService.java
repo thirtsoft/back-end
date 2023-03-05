@@ -1,22 +1,22 @@
 package com.spring.restaurant.service;
 
-import com.spring.restaurant.deo.CountryRepository;
 import com.spring.restaurant.model.Country;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class CountryService {
-    private CountryRepository countryRepository;
+public interface CountryService {
 
-    @Autowired
-    public CountryService(CountryRepository countryRepository) {
-        this.countryRepository = countryRepository;
-    }
+    Country saveCountry(Country country);
 
-    public List<Country> getAllCountry(){
-        return countryRepository.findAll();
-    }
+    Country updateCountry(Long catId, Country country);
+
+    Country findCountryById(Long id);
+
+    List<Country> allCountries();
+
+    List<Country> findAllCountriesOrderDesc();
+
+    void deleteCountry(Long catId);
+
 }

@@ -13,6 +13,13 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
     List<Item> findByOrderByIdDesc();
 
+    List<Item> findByOrderByQuantityDesc();
+
+    /*
+    @Query("select v from Item v order by v.quantity DESC ")
+    List<Item> findListItemsOrderByQuantityDesc();
+    */
+
     @Query("select p from Item p where p.requestOrder.id =:num")
     List<Item> ListItemByRequestOrderId(@Param("num") Long comId);
 }

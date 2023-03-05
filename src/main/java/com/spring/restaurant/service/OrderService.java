@@ -1,81 +1,30 @@
 package com.spring.restaurant.service;
 
-import com.spring.restaurant.deo.OrderRepository;
 import com.spring.restaurant.model.Order;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-@Slf4j
-public class OrderService {
+public interface OrderService {
 
-    private final OrderRepository orderRepository;
+    Order saveOrder(Order order);
 
-    @Autowired
-    public OrderService(OrderRepository orderRepository) {
-        this.orderRepository = orderRepository;
-    }
+    Order updateOrder(Long id, Order order);
 
-    public Order saveOrder(Order order) {
-        return orderRepository.save(order);
-    }
+    List<Order> findAllOrders();
 
-    public Order updateOrder(Long id, Order order) {
-        if (!orderRepository.existsById(id)) {
-            log.error("Product not found");
-        }
-        Order updateOrder = orderRepository.findById(id).get();
-        updateOrder.setName(order.getName());
-        updateOrder.setPrice(order.getPrice());
-        updateOrder.setQuantity(order.getQuantity());
-        updateOrder.setImg(order.getImg());
-        updateOrder.setDescription(order.getDescription());
-        updateOrder.setCategory(order.getCategory());
+    List<Order> findAllOrdersOrderDesc();
 
-        return orderRepository.save(updateOrder);
-    }
+    List<Order> getAllOrders(int page, int size);
 
-    public List<Order> findAllOrders() {
-        return orderRepository.findAll();
-    }
+    List<Order> getOrdersByIdCategories(Long id, int page, int size);
 
-    public List<Order> findAllOrdersOrderDesc() {
-        return orderRepository.findByOrderByIdDesc();
-    }
+    List<Order> getOrdersByKey(String key, int page, int size);
 
-    public List<Order> getAllOrders(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        return orderRepository.findAll(pageable).getContent();
-    }
+    Order getOrder(Long id);
 
-    public List<Order> getOrdersByIdCategories(Long id, int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        return orderRepository.findByCategoryId(id, pageable).getContent();
-    }
+    long getAllOrdersSize();
 
-    public List<Order> getOrdersByKey(String key, int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        return orderRepository.findByNameContaining(key, pageable).getContent();
-    }
+    long getOrdersByCategoryIdLength(Long id);
 
-    public Order getOrder(Long id) {
-        return orderRepository.findById(id).get();
-    }
-
-    public long getAllOrdersSize() {
-        return orderRepository.count();
-    }
-
-    public long getOrdersByCategoryIdLength(Long id) {
-        return orderRepository.getOrderLengthByCategoryId(id);
-    }
-
-    public long getOrderSizeByKey(String key) {
-        return orderRepository.getOrderSizeByKey(key);
-    }
+    long getOrderSizeByKey(String key);
 }

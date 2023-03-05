@@ -1,28 +1,22 @@
 package com.spring.restaurant.service;
 
-import com.spring.restaurant.deo.StateRepository;
 import com.spring.restaurant.model.State;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class StateService {
+public interface StateService {
 
-    private StateRepository stateRepository;
+    State saveState(State state);
 
-    @Autowired
-    public StateService(StateRepository stateRepository) {
-        this.stateRepository = stateRepository;
-    }
+    State updateState(Long catId, State state);
 
+    State findStateById(Long id);
 
-    public List<State> getAllStates(){
-        return stateRepository.findAll();
-    }
+    List<State> findAllStates();
 
-    public List<State> getStatesByCountryCode(String code){
-        return stateRepository.findByCountryCode(code);
-    }
+    List<State> findAllStatesOrderDesc();
+
+    List<State> findAllStatesByCountryCode(String code);
+
+    void deleteState(Long catId);
 }

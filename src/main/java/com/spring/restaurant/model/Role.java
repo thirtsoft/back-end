@@ -1,7 +1,6 @@
 package com.spring.restaurant.model;
 
 import com.spring.restaurant.enums.RoleName;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.NaturalId;

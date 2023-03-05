@@ -17,10 +17,10 @@ import static org.springframework.http.MediaType.IMAGE_PNG_VALUE;
 
 public interface UtilisateurApi {
 
-    @GetMapping(value = APP_ROOT + "/utilisateurs/all", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = APP_ROOT + "/utilisateurs/all")
     ResponseEntity<List<Utilisateur>> getListUtulisateurs();
 
-    @GetMapping(value = APP_ROOT + "/utilisateurs/allUtilisateurOrderDesc", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = APP_ROOT + "/utilisateurs/allUtilisateurOrderDesc")
     ResponseEntity<List<Utilisateur>> getAllUtilisateurOrderDesc();
 
     @GetMapping(value = APP_ROOT + "/utilisateurs/findById/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

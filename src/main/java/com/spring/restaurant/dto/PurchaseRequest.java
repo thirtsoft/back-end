@@ -1,9 +1,6 @@
 package com.spring.restaurant.dto;
 
-import com.spring.restaurant.model.Client;
-import com.spring.restaurant.model.Item;
-import com.spring.restaurant.model.RequestOrder;
-import com.spring.restaurant.model.Utilisateur;
+import com.spring.restaurant.model.*;
 import lombok.Data;
 
 import java.util.List;

@@ -1,58 +1,20 @@
 package com.spring.restaurant.service;
 
-import com.spring.restaurant.deo.CategoryRepository;
 import com.spring.restaurant.model.Category;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+public interface CategoryService {
 
-@Service
-@Slf4j
-public class CategoryService {
+    Category saveCategory(Category category);
 
-    private final CategoryRepository categoryRepository;
+    Category updateCategory(Long catId, Category category);
 
-    @Autowired
-    public CategoryService(CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
-    }
+    Category findCategoryById(Long id);
 
-    public Category saveCategory(Category category) {
-        return categoryRepository.save(category);
-    }
+    List<Category> allCategories();
 
-    public Category findCategoryById(Long id) {
-        return categoryRepository.findById(id).get();
-    }
+    List<Category> findAllCategoriesOrderDesc();
 
-    public Category updateCategory(Long catId, Category category) {
-        if (!categoryRepository.existsById(catId)) {
-            log.error("Category not found");
-        }
-
-        Category updateCategory = categoryRepository.findById(catId).get();
-        updateCategory.setName(category.getName());
-        updateCategory.setLogo(category.getLogo());
-
-        return categoryRepository.save(updateCategory);
-
-    }
-
-    public List<Category> allCategories() {
-        return categoryRepository.findAll();
-    }
-
-    public List<Category> findAllCategoriesOrderDesc() {
-        return categoryRepository.findByOrderByIdDesc();
-    }
-
-    public void deleteCategory(Long catId) {
-        if (catId == null) {
-            log.error("Category not found");
-        }
-        categoryRepository.deleteById(catId);
-    }
+    void deleteCategory(Long catId);
 }

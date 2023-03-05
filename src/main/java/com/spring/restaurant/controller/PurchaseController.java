@@ -1,5 +1,6 @@
 package com.spring.restaurant.controller;
 
+import com.spring.restaurant.controller.api.PurchaseApi;
 import com.spring.restaurant.dto.PurchaseRequest;
 import com.spring.restaurant.dto.PurchaseResponse;
 import com.spring.restaurant.model.Utilisateur;
@@ -8,14 +9,17 @@ import com.spring.restaurant.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 // http://localhost:8080
 @CrossOrigin("http://localhost:4200")
 @RestController
-@RequestMapping("/api/buy")
+//@RequestMapping("/api/buy")
 // http://localhost:8080/api/buy
-public class PurchaseController {
+public class PurchaseController implements PurchaseApi {
 
     private final PurchaseService purchaseService;
 
@@ -37,7 +41,7 @@ public class PurchaseController {
     }
     */
 
-    @PostMapping("/purchase")
+    //  @PostMapping("/purchase")
     public ResponseEntity<PurchaseResponse> addRequestOrder(@RequestBody PurchaseRequest purchaseRequest, @RequestParam Long id) {
         System.out.println(purchaseRequest.getItems().size());
 
